@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natura Ita - Saúde e Sabor para sua Vida</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2e7d32;
+            --secondary: #f57c00;
+            --light: #f1f8e9;
+            --dark: #333;
+            --white: #ffffff;
+            --gray: #757575;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .logo img {
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .hero {
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+        }
+
+        .btn {
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #e65100;
+            transform: scale(1.05);
+        }
+
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+
+        .section-title div {
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            margin: 10px auto;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background-color: var(--light);
+            border-radius: 15px;
+            padding: 0;
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-card-content {
+            padding: 1.5rem;
+        }
+
+        .product-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .about-container {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .reviews-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .review-card {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--primary);
+        }
+
+        .stars {
+            color: #ffc107;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .info-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .info-item i {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        footer {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        /* Chatbot Styles */
+        #chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 2000;
+        }
+
+        #chatbot-button {
+            width: 60px;
+            height: 60px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+
+        #chatbot-button:hover {
+            transform: scale(1.1);
+        }
+
+        #chatbot-window {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 350px;
+            height: 450px;
+            background-color: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid #ddd;
+        }
+
+        #chatbot-header {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #chat-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+
+        .bot-message {
+            background-color: #e8f5e9;
+            align-self: flex-start;
+            border-bottom-left-radius: 2px;
+        }
+
+        .user-message {
+            background-color: var(--primary);
+            color: var(--white);
+            align-self: flex-end;
+            border-bottom-right-radius: 2px;
+        }
+
+        #chat-input-area {
+            padding: 1rem;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 10px;
+        }
+
+        #chat-input {
+            flex: 1;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            padding: 8px 15px;
+            outline: none;
+        }
+
+        #send-btn {
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.5rem; }
+            #chatbot-window { width: 300px; right: -10px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <div class="logo">
+            <i class="fas fa-leaf"></i>
+            Natura Ita
+        </div>
+        <div class="nav-links">
+            <a href="#home">Início</a>
+            <a href="#produtos">Produtos</a>
+            <a href="#sobre">Sobre</a>
+            <a href="#avaliacoes">Avaliações</a>
+            <a href="#contato">Contato</a>
+        </div>
+        <a href="https://wa.me/5513996010793" class="btn" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">WhatsApp</a>
+    </nav>
+</header>
+
+<section id="home" class="hero" style="background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('fachada.jpg'); background-size: cover; background-position: center;">
+    <h1>Saúde e Sabor para sua Vida</h1>
+    <p>Produtos naturais selecionados com carinho para o seu bem-estar. Venha conhecer a loja mais completa de Itanhaém!</p>
+    <a href="#produtos" class="btn">Ver Produtos</a>
+</section>
+
+<section id="produtos">
+    <div class="section-title">
+        <h2>Nossos Produtos</h2>
+        <div></div>
+        <p>Variedade e qualidade em cada detalhe</p>
+    </div>
+    <div class="products-grid">
+        <div class="product-card">
+            <img src="produtos.jpg" alt="Temperos Natura Ita">
+            <div class="product-card-content">
+                <h3>Temperos</h3>
+                <p>Limão Siciliano, Açafrão, Chimichurri e muito mais para dar vida aos seus pratos.</p>
+            </div>
+        </div>
+        <div class="product-card">
+            <img src="interior.jpg" alt="Farinhas e Grãos Natura Ita">
+            <div class="product-card-content">
+                <h3>Farinhas e Grãos</h3>
+                <p>Farinha de Linhaça Dourada, Chia, Quinoa e opções integrais de alta qualidade com venda a granel.</p>
+            </div>
+        </div>
+        <div class="product-card">
+            <img src="produtos1.jpg" alt="Chás, Castanhas e Snacks">
+            <div class="product-card-content">
+                <h3>Chás e Ervas</h3>
+                <p>Uma seleção especial de ervas naturais para infusão e cuidados com a saúde.</p>
+            </div>
+        </div>
+        <div class="product-card">
+            <img src="interior1.jpg" alt="Suplementos e Atendimento">
+            <div class="product-card-content">
+                <h3>Suplementos</h3>
+                <p>Vitaminas em cápsulas e óleos essenciais para complementar sua nutrição.</p>
+            </div>
+        </div>
+        <div class="product-card">
+            <img src="produtos2.jpg" alt="Snacks e Castanhas">
+            <div class="product-card-content">
+                <h3>Snacks Saudáveis</h3>
+                <p>Biscoitos de arroz, castanhas nobres e mix de frutas secas organizadas para o seu lanche.</p>
+            </div>
+        </div>
+        <div class="product-card">
+            <img src="produtos.jpg" alt="Especiais Natura Ita">
+            <div class="product-card-content">
+                <h3>Especiais</h3>
+                <p>Sal do Himalaia, Vinagres especiais e Palmito de primeira linha direto na gôndola.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="sobre" style="background-color: var(--light);">
+    <div class="about-container">
+        <div class="about-image">
+            <img src="interior1.jpg" alt="Interior Otimizado da Natura Ita">
+        </div>
+        <div class="about-text">
+            <div class="section-title" style="text-align: left;">
+                <h2>Sobre a Natura Ita</h2>
+                <div style="margin: 10px 0;"></div>
+            </div>
+            <p>Localizada no bairro Belas Artes em Itanhaém, a <strong>Natura Ita</strong> nasceu do desejo de proporcionar mais saúde e sabor para a vida de nossos clientes. Somos especialistas em produtos naturais, oferecendo desde temperos frescos até suplementos essenciais.</p>
+            <br>
+            <p>Nosso atendimento é personalizado, focado em entender suas necessidades e oferecer o melhor custo-benefício da região. Seja para uma dieta específica ou apenas para manter um estilo de vida saudável, aqui você encontra tudo o que precisa.</p>
+            <br>
+            <a href="#contato" class="btn">Onde Estamos</a>
+        </div>
+    </div>
+</section>
+
+<section id="avaliacoes">
+    <div class="section-title">
+        <h2>O que dizem nossos clientes</h2>
+        <div></div>
+        <p>Nota 4.8 de 5 baseada em 18 avaliações no Google</p>
+    </div>
+    <div class="reviews-container">
+        <div class="review-card">
+            <div class="stars">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p>"Produtos excelentes, boa variedade, preço justo, atendimento ótimo, recomendo!"</p>
+            <br>
+            <strong>- Lia Martins</strong>
+        </div>
+        <div class="review-card">
+            <div class="stars">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p>"Loja muito completa e o atendimento do Eduardo é de primeira linha! Super recomendo!"</p>
+            <br>
+            <strong>- Carla Aparecida Vernil</strong>
+        </div>
+        <div class="review-card">
+            <div class="stars">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p>"Produtos de muita qualidade, atendimento maravilhoso, loja de fácil acesso e super recomendo"</p>
+            <br>
+            <strong>- Damiaomonteiro Silva</strong>
+        </div>
+    </div>
+</section>
+
+<section id="contato">
+    <div class="section-title">
+        <h2>Fale Conosco</h2>
+        <div></div>
+    </div>
+    <div class="contact-info">
+        <div class="info-item">
+            <i class="fas fa-location-dot"></i>
+            <div>
+                <h3>Endereço</h3>
+                <p>R. Ver. Angelino de Bortoli, 18 - loja 03<br>Belas Artes, Itanhaém - SP, 11746-772</p>
+            </div>
+        </div>
+        <div class="info-item">
+            <i class="fas fa-phone"></i>
+            <div>
+                <h3>Telefone / WhatsApp</h3>
+                <p>(13) 99601-0793</p>
+            </div>
+        </div>
+        <div class="info-item">
+            <i class="fas fa-clock"></i>
+            <div>
+                <h3>Horário de Funcionamento</h3>
+                <p>Segunda a Sexta: 09:00 às 18:00<br>Sábado: 09:00 às 14:00</p>
+            </div>
+        </div>
+    </div>
+    <div style="margin-top: 3rem; border-radius: 15px; overflow: hidden; height: 300px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+        <!-- MAPA ATUALIZADO COM A LOCALIZAÇÃO REAL E EXATA DA NATURA ITA -->
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3637.3374495574044!2d-46.8066531!3d-24.1862141!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce2b949972b747%3A0x4993a84abaaee7dc!2sNatura%20Ita!5e0!3m2!1spt-BR!2sbr!4v1710000000000!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+</section>
+
+<footer>
+    <p>© 2024 Natura Ita - Produtos Naturais. Todos os direitos reservados.</p>
+    <p style="margin-top: 10px; font-size: 0.8rem;">Desenvolvido com carinho para o seu bem-estar.</p>
+</footer>
+
+<div id="chatbot-container">
+    <div id="chatbot-window">
+        <div id="chatbot-header">
+            <span>Atendimento Natura Ita</span>
+            <i class="fas fa-times" style="cursor: pointer;" onclick="toggleChat()"></i>
+        </div>
+        <div id="chat-messages">
+            <div class="message bot-message">Olá! Sou o assistente virtual da Natura Ita. Como posso te ajudar hoje?</div>
+        </div>
+        <div id="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Digite sua dúvida...">
+            <button id="send-btn" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+    <div id="chatbot-button" onclick="toggleChat()">
+        <i class="fas fa-comments"></i>
+    </div>
+</div>
+
+<script>
+    function toggleChat() {
+        const window = document.getElementById('chatbot-window');
+        window.style.display = window.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    function sendMessage() {
+        const input = document.getElementById('chat-input');
+        const text = input.value.trim();
+        if (text === '') return;
+
+        addMessage(text, 'user-message');
+        input.value = '';
+
+        setTimeout(() => {
+            const botResponse = getBotResponse(text);
+            addMessage(botResponse, 'bot-message');
+        }, 500);
+    }
+
+    function addMessage(text, className) {
+        const messagesDiv = document.getElementById('chat-messages');
+        const msgDiv = document.createElement('div');
+        msgDiv.className = 'message ' + className;
+        msgDiv.innerText = text;
+        messagesDiv.appendChild(msgDiv);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+
+    function getBotResponse(input) {
+        input = input.toLowerCase();
+        if (input.includes('horário') || input.includes('abre') || input.includes('fech')) {
+            return "Abrimos de segunda a sexta das 09:00 às 18:00, e aos sábados das 09:00 às 14:00.";
+        } else if (input.includes('entrega') || input.includes('delivery')) {
+            return "Sim! Realizamos entregas em Itanhaém. Você pode fazer seu pedido pelo WhatsApp (13) 99601-0793.";
+        } else if (input.includes('onde') || input.includes('endereço') || input.includes('localiz')) {
+            return "Estamos na R. Ver. Angelino de Bortoli, 18 - loja 03, no Belas Artes, Itanhaém (atrás da UPA).";
+        } else if (input.includes('produto') || input.includes('tem') || input.includes('vende')) {
+            return "Temos uma grande variedade de temperos, farinhas, castanhas, chás e suplementos. Qual produto específico você procura?";
+        } else if (input.includes('preço') || input.includes('valor')) {
+            return "Nossos preços são muito justos e competitivos! Para valores específicos, recomendo nos chamar no WhatsApp.";
+        } else {
+            return "Entendi! Para um atendimento mais detalhado sobre produtos e pedidos, você pode falar diretamente com o Eduardo pelo WhatsApp (13) 99601-0793.";
+        }
+    }
+
+    document.getElementById('chat-input').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') sendMessage();
+    });
+</script>
+
+</body>
+</html>
